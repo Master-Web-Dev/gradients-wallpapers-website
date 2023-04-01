@@ -1,0 +1,276 @@
+/* ======================================== Google Font ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&display=swap');
+
+/* ======================================== Main Styles ======================================== */
+:root {
+    --black-color: #252929;
+    --white-color: hsl(180, 5%, 85%);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    border: 0;
+    text-decoration: none;
+    color: var(--white-color);
+    font-family: 'Syne', sans-serif;
+}
+
+body {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 0 2rem;
+    padding-bottom: 2rem;
+    background: var(--black-color);
+}
+
+::selection {
+    background: var(--white-color);
+    color: var(--black-color);
+}
+
+/* ======================================== Header ======================================== */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+    background-color: var(--black-color);
+    border-bottom: 2px solid var(--white-color);
+}
+
+.header .logo a {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.header .navBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.header .navBar a.link {
+    position: relative;
+}
+
+.header .navBar a.link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: var(--white-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.header .navBar a.link:hover::before {
+    width: 100%;
+}
+
+.header .ctaBtnContainer a.link {
+    padding: 0.5rem 2rem;
+    border: 2px solid var(--white-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.header .ctaBtnContainer a.link:hover {
+    background-color: var(--white-color);
+    color: var(--black-color);
+}
+
+/* ======================================== Hero Page ======================================== */
+.heroPage {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8rem;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.heroPage .topImageContainer {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.heroPage .topImageContainer img {
+    width: 50%;
+}
+
+.heroPage .topContentContainer {
+    width: 70%;
+}
+
+.heroPage .topContentContainer h1 {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.heroPage .cardsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.heroPage .cardsContainer .card {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.heroPage .cardsContainer .card .downloadLink {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--black-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.heroPage .cardsContainer .card:hover .downloadLink {
+    opacity: 1;
+    user-select: auto;
+    pointer-events: auto;
+    overflow: hidden;
+}
+
+.heroPage .cardsContainer .card:hover .downloadLink i {
+    animation: arrowAnim 1s ease-in-out infinite;
+}
+
+.heroPage .cardsContainer .card:hover .downloadLink:hover i {
+    animation: none;
+}
+
+@keyframes arrowAnim {
+    0% {
+        transform: translateY(-200%);
+    }
+    100% {
+        transform: translateY(200%);
+    }
+}
+
+/* =============================== RESPONSIVE ==================================== */
+
+.rightSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.bars {
+    position: absolute;
+    top: 20px;
+    right: 2rem;
+    z-index: 99;
+    display: none;
+}
+
+.bars .fa-bars {
+    display: flex;
+}
+
+.bars .fa-xmark {
+    display: none;
+}
+
+.bars.active .fa-bars {
+    display: none;
+}
+
+.bars.active .fa-xmark {
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .rightSide {
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 98;
+        background-color: var(--white-color);
+        flex-direction: column;
+        display: none;
+    }
+
+    .rightSide .navBar {
+        flex-direction: column;
+    }
+
+    .rightSide a {
+        color: var(--black-color);
+    }
+
+    .header .ctaBtnContainer a.link {
+        border: 2px solid var(--black-color);
+    }
+
+    .header .ctaBtnContainer a.link:hover {
+        background-color: var(--black-color);
+        color: var(--white-color);
+    }
+
+    .heroPage .topContentContainer h1 {
+        font-size: 32px;
+    }
+
+    .heroPage .cardsContainer .card {
+        width: 90vw;
+    }
+
+    .bars {
+        display: flex;
+    }
+
+    .rightSide.active {
+        display: flex;
+    }
+
+    .rightSide.active ~ .bars i {
+        color: var(--black-color);
+    } 
+}
+
+@media screen and (max-width: 480px) {
+    .rightSide {
+        width: 100%;
+    }
+
+    .heroPage .topContentContainer {
+        width: 100%;
+    }
+
+    .heroPage .topContentContainer h1 {
+        font-size: 21px;
+    }
+
+    .heroPage .cardsContainer .card {
+        width: 90vw;
+    }
+}
